@@ -870,11 +870,20 @@ function filterCars(cat) {
 }
 
 function sendWhatsApp() {
-  const nome = document.querySelector('input[placeholder="Seu nome"]').value || 'Cliente';
-  const tel  = document.querySelector('input[placeholder="(17) 9 0000-0000"]').value || '';
-  const msg  = document.querySelector('textarea').value || '';
-  const text = encodeURIComponent(`Olá! Meu nome é ${nome}${tel ? ', meu telefone é ' + tel : ''}. ${msg}`);
-  window.open(`https://wa.me/5517997263334?text=${text}`, '_blank');
+  const nome = document.querySelector('input[placeholder="Seu nome"]').value;
+  const tel = document.querySelector('input[placeholder="(17) 9 0000-0000"]').value;
+  const msg = document.querySelector('textarea').value;
+  
+  // Impede o envio se o nome estiver vazio (Segurança básica)
+  if (!nome) {
+    alert("Por favor, digite seu nome.");
+    return;
+  }
+
+  const texto = encodeURIComponent(`Olá! Meu nome é ${nome}. ${msg} (Tel: ${tel})`);
+  const numeroLoja = "5517997263334"; // Confirme se este é o número correto
+  
+  window.open(`https://wa.me/${numeroLoja}?text=${texto}`, '_blank');
 }
 </script>
 </body>
