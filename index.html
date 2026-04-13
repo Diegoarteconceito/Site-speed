@@ -1,106 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speed Car Jales | Estoque Premium</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Speed Car Veículos | Jales - SP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #d4af37;
-            --dark: #0a0a0a;
-            --light: #f4f4f4;
+            --red: #D0121A;
+            --black: #0A0A0A;
+            --dark: #111111;
+            --gray: #2C2C2C;
+            --white: #F9FAFB;
         }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--light); margin: 0; }
-        header { padding: 40px 20px; text-align: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500'); background-size: cover; border-bottom: 3px solid var(--primary); }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        h2 { text-align: center; color: var(--primary); text-transform: uppercase; margin-top: 50px; }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
         
-        /* Grid de Veículos */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #1a1a1a; border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
+        header { padding: 20px; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--red); position: sticky; top: 0; z-index: 100; text-align: center; }
+        .logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--white); text-transform: uppercase; font-style: italic; }
+        .logo span { color: var(--red); }
+
+        .hero { padding: 60px 20px; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1000'); background-size: cover; background-position: center; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; text-transform: uppercase; font-style: italic; }
+        .hero p { color: var(--red); font-weight: 600; font-size: 1.2rem; }
+
+        .inventory { padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--dark); border: 1px solid var(--gray); border-radius: 8px; overflow: hidden; transition: 0.3s; }
+        .card:hover { border-color: var(--red); transform: translateY(-5px); }
+        .card-img { width: 100%; height: 200px; background: var(--gray); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
         .card-content { padding: 20px; }
-        .btn-whats { display: block; text-align: center; background: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 15px; }
+        .card-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; }
+        .price { color: var(--red); font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; }
+        
+        .btn-consult { display: block; background: var(--red); color: white; text-align: center; padding: 12px; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
 
-        /* Galeria de Fotos Internas/Externas */
-        .gallery-section { background: #111; padding: 40px 0; margin-top: 50px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; height: 150px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: 0.3s; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-tag { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: var(--primary); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
+        .location { padding: 40px 20px; background: var(--dark); }
+        .map-wrap { width: 100%; height: 400px; border-radius: 12px; overflow: hidden; border: 2px solid var(--gray); }
+        
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; }
 
-        /* Mapa */
-        .map-wrap { margin-top: 50px; border-radius: 20px; overflow: hidden; border: 2px solid var(--primary); height: 400px; }
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--gray); color: #666; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>SPEED CAR JALES</h1>
-    <p>Onde a velocidade encontra o luxo.</p>
+    <div class="logo">SPEED <span>CAR</span></div>
 </header>
 
-<div class="container">
-    <h2>Destaques do Estoque</h2>
-    <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?auto=format&fit=crop&q=80&w=800" alt="Tracker">
-            <div class="card-content">
-                <h3>Chevrolet Tracker Premier</h3>
-                <p>2024 • Automático • Teto Solar</p>
-                <a href="javascript:sendWhatsApp('Tracker')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" alt="Virtus">
-            <div class="card-content">
-                <h3>VW Virtus Highline</h3>
-                <p>2023 • Turbo • Digital Cockpit</p>
-                <a href="javascript:sendWhatsApp('Virtus')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
-            </div>
+<section class="hero">
+    <h1>Excelência em Veículos</h1>
+    <p>HÁ 15 ANOS REALIZANDO SONHOS EM JALES</p>
+</section>
+
+<section class="inventory">
+    <div class="card">
+        <div class="card-img">🚗</div>
+        <div class="card-content">
+            <div class="card-title">Toyota Corolla XEi 2024</div>
+            <div class="price">R$ 145.900</div>
+            <a href="https://wa.me/5517999999999?text=Tenho%20interesse%20no%20Corolla" class="btn-consult">Consultar Agora</a>
         </div>
     </div>
-
-    <section class="gallery-section">
-        <h2>Galeria de Detalhes (Interno/Externo)</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=500" alt="Externa">
-                <span class="gallery-tag">EXTERNA</span>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=500" alt="Painel">
-                <span class="gallery-tag">INTERNA (PAINEL)</span>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?auto=format&fit=crop&q=80&w=500" alt="Bancos">
-                <span class="gallery-tag">INTERNA (COURO)</span>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=500" alt="Roda">
-                <span class="gallery-tag">RODAS LIGA LEVE</span>
-            </div>
+    <div class="card">
+        <div class="card-img">🚙</div>
+        <div class="card-content">
+            <div class="card-title">Jeep Compass Longitude</div>
+            <div class="price">R$ 162.000</div>
+            <a href="https://wa.me/5517999999999?text=Tenho%20interesse%20no%20Jeep" class="btn-consult">Consultar Agora</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <h2>Localização (Jales-SP)</h2>
+<section class="location">
+    <h2 style="text-align: center; margin-bottom: 20px;">NOSSA LOJA</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Av. João Amadeu, 3216 - Jales/SP</p>
     <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.384666320078!2d-50.5487679!3d-20.2636253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9497e2e3428d059b%3A0xc0768e1e77936a28!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jales%2C%20SP%2C%2015700-000!5e0!3m2!1spt-BR!2sbr!4v1713000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.382431616238!2d-50.5516246!3d-20.2637217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94970428522e8473%3A0xc3389420b923188d!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%2C%20Jales%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1713020000000!5m2!1spt-BR!2sbr" 
+            width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(1.1);" allowfullscreen="" loading="lazy">
+        </iframe>
     </div>
-</div>
+</section>
 
-<script>
-    function sendWhatsApp(veiculo) {
-        const nome = prompt("Para te atender melhor, qual seu nome?");
-        if (!nome) return;
-        const telLoja = "5517997263334";
-        const texto = encodeURIComponent(`Olá! Sou o ${nome} e vi no site o ${veiculo}. Gostaria de mais detalhes!`);
-        window.open(`https://wa.me/${telLoja}?text=${texto}`, '_blank');
-    }
-</script>
+<a href="https://wa.me/5517999999999" class="whatsapp-float" target="_blank">
+    <i>WA</i>
+</a>
+
+<footer>
+    <p>&copy; 2026 Speed Car Veículos - Todos os direitos reservados.</p>
+</footer>
 
 </body>
 </html>
