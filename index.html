@@ -1,890 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speed Car Veículos | Jales - SP</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #D0121A;
-    --red-dark: #9A0D13;
-    --red-glow: rgba(208,18,26,0.35);
-    --black: #0A0A0A;
-    --dark: #111111;
-    --dark2: #1A1A1A;
-    --gray: #2C2C2C;
-    --silver: #9CA3AF;
-    --light: #E5E7EB;
-    --white: #F9FAFB;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Car Jales | Estoque Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d4af37;
+            --dark: #0a0a0a;
+            --light: #f4f4f4;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--light); margin: 0; }
+        header { padding: 40px 20px; text-align: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500'); background-size: cover; border-bottom: 3px solid var(--primary); }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        h2 { text-align: center; color: var(--primary); text-transform: uppercase; margin-top: 50px; }
+        
+        /* Grid de Veículos */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #1a1a1a; border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .btn-whats { display: block; text-align: center; background: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 15px; }
 
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        /* Galeria de Fotos Internas/Externas */
+        .gallery-section { background: #111; padding: 40px 0; margin-top: 50px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; height: 150px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-tag { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: var(--primary); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--black);
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top:0; left:0; right:0; z-index:100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%;
-    height: 70px;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(208,18,26,0.25);
-  }
-  .nav-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem; font-weight: 900;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-  }
-  .nav-logo span { color: var(--red); }
-  .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--silver); text-decoration: none;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--red); }
-  .nav-cta {
-    background: var(--red); color: #fff;
-    padding: 0.5rem 1.4rem; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background .2s;
-  }
-  .nav-cta:hover { background: var(--red-dark); color: #fff !important; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 100px 5% 60px;
-    position: relative; overflow: hidden;
-    background: var(--black);
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(208,18,26,0.12) 0%, transparent 65%),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, transparent 1px, transparent 80px, rgba(255,255,255,0.015) 81px),
-      repeating-linear-gradient(0deg,  rgba(255,255,255,0.015) 0px, transparent 1px, transparent 80px, rgba(255,255,255,0.015) 81px);
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(208,18,26,0.15); border: 1px solid rgba(208,18,26,0.4);
-    color: var(--red); padding: 0.3rem 0.85rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-    border-radius: 2px; margin-bottom: 1.5rem;
-    width: fit-content;
-    animation: fadeUp .6s ease both;
-  }
-  .hero-badge::before { content:'●'; font-size:0.5rem; animation: blink 1.2s step-end infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3.5rem, 10vw, 9rem);
-    font-weight: 900; line-height: 0.9;
-    text-transform: uppercase; letter-spacing: -0.01em;
-    position: relative; z-index: 1;
-    animation: fadeUp .7s .1s ease both;
-  }
-  .hero-title .line1 { color: var(--white); display: block; }
-  .hero-title .line2 { color: var(--red); display: block; }
-  .hero-title .line3 { color: var(--white); display: block; font-style: italic; font-weight: 300; }
-
-  .hero-sub {
-    margin-top: 1.5rem; max-width: 480px;
-    font-size: 1.05rem; font-weight: 400; line-height: 1.6;
-    color: var(--silver);
-    animation: fadeUp .7s .2s ease both;
-  }
-  .hero-actions {
-    display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
-    animation: fadeUp .7s .3s ease both;
-  }
-  .btn-primary {
-    background: var(--red); color: #fff;
-    padding: 0.85rem 2.2rem; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; transition: background .2s, transform .15s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent; color: var(--white);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 0.85rem 2.2rem; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; transition: border-color .2s, color .2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn-ghost:hover { border-color: var(--red); color: var(--red); }
-
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem; flex-wrap: wrap;
-    animation: fadeUp .7s .4s ease both;
-  }
-  .stat { display: flex; flex-direction: column; }
-  .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.6rem; font-weight: 900; color: var(--red);
-    line-height: 1;
-  }
-  .stat-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); margin-top: 0.2rem; }
-
-  .hero-car-deco {
-    position: absolute; right: -2%; bottom: -5%;
-    width: 55%; opacity: 0.06;
-    pointer-events: none;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(8rem, 18vw, 22rem);
-    font-weight: 900; text-transform: uppercase;
-    letter-spacing: -0.05em; line-height: 1;
-    white-space: nowrap; color: var(--white);
-    user-select: none;
-  }
-
-  @keyframes fadeUp {
-    from { opacity:0; transform: translateY(30px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
-
-  /* ── SECTIONS COMMON ── */
-  section { padding: 90px 5%; }
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.6rem;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .section-label::before { content:''; width: 2rem; height: 1px; background: var(--red); }
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 900; text-transform: uppercase; line-height: 1;
-    margin-bottom: 1.2rem;
-  }
-  .section-desc { color: var(--silver); max-width: 520px; line-height: 1.7; font-size: 1rem; }
-
-  /* ── ESTOQUE / CARDS ── */
-  #estoque { background: var(--dark); }
-  .filter-bar {
-    display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 2.5rem 0 2rem;
-  }
-  .filter-btn {
-    padding: 0.4rem 1.1rem; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    border: 1px solid var(--gray); background: transparent; color: var(--silver);
-    cursor: pointer; transition: all .2s;
-  }
-  .filter-btn.active, .filter-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
-
-  .cars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .car-card {
-    background: var(--dark2); border: 1px solid var(--gray);
-    border-radius: 4px; overflow: hidden;
-    transition: transform .25s, border-color .25s, box-shadow .25s;
-    cursor: pointer;
-  }
-  .car-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--red);
-    box-shadow: 0 12px 40px rgba(208,18,26,0.18);
-  }
-  .car-img {
-    width: 100%; aspect-ratio: 16/10; object-fit: cover;
-    background: var(--gray);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-    position: relative; overflow: hidden;
-  }
-  .car-img-placeholder {
-    width: 100%; aspect-ratio: 16/10;
-    background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 5rem; position: relative; overflow: hidden;
-  }
-  .car-img-placeholder::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(208,18,26,0.08), transparent);
-  }
-  .car-tag {
-    position: absolute; top: 0.7rem; left: 0.7rem;
-    background: var(--red); color: #fff;
-    padding: 0.2rem 0.6rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    border-radius: 2px;
-  }
-  .car-info { padding: 1.2rem; }
-  .car-make {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.2rem;
-  }
-  .car-model {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem; font-weight: 700; text-transform: uppercase;
-    color: var(--white); line-height: 1.1; margin-bottom: 0.6rem;
-  }
-  .car-specs { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .car-spec {
-    font-size: 0.78rem; color: var(--silver);
-    display: flex; align-items: center; gap: 0.3rem;
-  }
-  .car-spec::before { content:'•'; color: var(--red); }
-  .car-price {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.8rem; font-weight: 900; color: var(--white);
-    line-height: 1;
-  }
-  .car-price span { font-size: 1rem; font-weight: 400; color: var(--silver); margin-right: 0.3rem; }
-  .car-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.8rem 1.2rem;
-    border-top: 1px solid var(--gray);
-  }
-  .car-footer a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--red); text-decoration: none;
-    display: flex; align-items: center; gap: 0.4rem;
-    transition: gap .2s;
-  }
-  .car-footer a:hover { gap: 0.7rem; }
-  .car-footer a::after { content: '→'; }
-
-  /* ── POR QUE NÓS ── */
-  #diferenciais { background: var(--black); }
-  .diff-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem; margin-top: 3rem;
-  }
-  .diff-card {
-    padding: 2rem;
-    border: 1px solid var(--gray);
-    border-radius: 4px;
-    background: var(--dark2);
-    position: relative; overflow: hidden;
-    transition: border-color .25s;
-  }
-  .diff-card:hover { border-color: var(--red); }
-  .diff-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--red);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .3s;
-  }
-  .diff-card:hover::before { transform: scaleX(1); }
-  .diff-icon {
-    font-size: 2.5rem; margin-bottom: 1rem;
-  }
-  .diff-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 700; text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
-  .diff-desc { font-size: 0.9rem; color: var(--silver); line-height: 1.65; }
-
-  /* ── FINANCIAMENTO ── */
-  #financiamento {
-    background: var(--red);
-    position: relative; overflow: hidden;
-  }
-  #financiamento::before {
-    content: 'FINANCIE';
-    position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(5rem, 14vw, 16rem);
-    font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em;
-    color: rgba(0,0,0,0.12); pointer-events: none; user-select: none;
-    white-space: nowrap;
-  }
-  .fin-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: center;
-  }
-  .fin-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 900; text-transform: uppercase; line-height: 0.95;
-    color: #fff;
-  }
-  .fin-title em { font-style: italic; font-weight: 300; }
-  .fin-desc { color: rgba(255,255,255,0.82); font-size: 1rem; line-height: 1.65; margin-top: 1.2rem; }
-  .fin-steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-  .fin-step {
-    display: flex; align-items: flex-start; gap: 1rem;
-    background: rgba(0,0,0,0.12); padding: 1rem 1.2rem; border-radius: 4px;
-  }
-  .fin-step-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem; font-weight: 900; color: rgba(255,255,255,0.4);
-    line-height: 1; min-width: 2rem;
-  }
-  .fin-step-text { font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5; }
-  .fin-step-text strong { display: block; font-weight: 600; color: #fff; margin-bottom: 0.1rem; }
-  .fin-cta {
-    margin-top: 2rem;
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    background: #fff; color: var(--red);
-    padding: 0.9rem 2rem; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; transition: transform .2s;
-  }
-  .fin-cta:hover { transform: translateY(-2px); }
-
-  @media (max-width: 768px) {
-    .fin-inner { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  /* ── AVALIAÇÕES ── */
-  #avaliacoes { background: var(--dark); }
-  .reviews-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.2rem; margin-top: 2.5rem;
-  }
-  .review-card {
-    background: var(--dark2); border: 1px solid var(--gray);
-    padding: 1.5rem; border-radius: 4px;
-    transition: border-color .25s;
-  }
-  .review-card:hover { border-color: rgba(208,18,26,0.4); }
-  .review-stars { color: #FBBF24; font-size: 1rem; letter-spacing: 0.1rem; margin-bottom: 0.8rem; }
-  .review-text { font-size: 0.92rem; color: var(--silver); line-height: 1.65; font-style: italic; margin-bottom: 1rem; }
-  .review-author {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; font-weight: 700; text-transform: uppercase;
-    color: var(--white); letter-spacing: 0.05em;
-  }
-  .review-date { font-size: 0.75rem; color: #555; margin-top: 0.2rem; }
-  .rating-summary {
-    display: flex; align-items: center; gap: 2rem; margin-bottom: 0.5rem; flex-wrap: wrap;
-  }
-  .rating-big {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 5rem; font-weight: 900; line-height: 1; color: var(--white);
-  }
-  .rating-stars { color: #FBBF24; font-size: 1.6rem; }
-  .rating-count { color: var(--silver); font-size: 0.9rem; margin-top: 0.2rem; }
-
-  /* ── CONTATO ── */
-  #contato { background: var(--black); }
-  .contato-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    margin-top: 3rem;
-  }
-  .contato-info { display: flex; flex-direction: column; gap: 1.8rem; }
-  .info-item { display: flex; gap: 1rem; align-items: flex-start; }
-  .info-icon {
-    width: 2.6rem; height: 2.6rem; border-radius: 2px;
-    background: rgba(208,18,26,0.12); border: 1px solid rgba(208,18,26,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
-  }
-  .info-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.2rem;
-  }
-  .info-value { color: var(--white); font-size: 0.95rem; line-height: 1.5; }
-  .info-value a { color: var(--white); text-decoration: none; }
-  .info-value a:hover { color: var(--red); }
-
-  .form-group { margin-bottom: 1.2rem; }
-  .form-group label {
-    display: block;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--silver); margin-bottom: 0.45rem;
-  }
-  .form-group input, .form-group textarea, .form-group select {
-    width: 100%; background: var(--dark2); border: 1px solid var(--gray);
-    color: var(--white); padding: 0.75rem 1rem;
-    border-radius: 2px; font-family: 'Barlow', sans-serif; font-size: 0.95rem;
-    outline: none; transition: border-color .2s;
-  }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-    border-color: var(--red);
-  }
-  .form-group select option { background: var(--dark2); }
-  .form-group textarea { resize: vertical; min-height: 110px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-submit {
-    width: 100%; padding: 0.9rem;
-    background: var(--red); color: #fff; border: none; cursor: pointer;
-    border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    transition: background .2s;
-  }
-  .form-submit:hover { background: var(--red-dark); }
-
-  .whatsapp-float {
-    position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 200;
-    width: 3.4rem; height: 3.4rem; border-radius: 50%;
-    background: #25D366; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.7rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    text-decoration: none;
-    animation: pulse-green 2s infinite;
-  }
-  @keyframes pulse-green {
-    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
-  }
-
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .hero-car-deco { display: none; }
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark2);
-    border-top: 1px solid var(--gray);
-    padding: 2.5rem 5%;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem; font-weight: 900; text-transform: uppercase;
-  }
-  .footer-logo span { color: var(--red); }
-  .footer-text { color: var(--silver); font-size: 0.82rem; }
-
-  /* Map embed */
-  .map-wrap {
-    margin-top: 2rem; border-radius: 4px; overflow: hidden;
-    border: 1px solid var(--gray);
-    height: 250px;
-  }
-  .map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(60%) invert(90%) hue-rotate(180deg); }
-</style>
+        /* Mapa */
+        .map-wrap { margin-top: 50px; border-radius: 20px; overflow: hidden; border: 2px solid var(--primary); height: 400px; }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Speed <span>Car</span></div>
-  <ul class="nav-links">
-    <li><a href="#estoque">Estoque</a></li>
-    <li><a href="#diferenciais">Diferenciais</a></li>
-    <li><a href="#financiamento">Financiamento</a></li>
-    <li><a href="#avaliacoes">Avaliações</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-  <a href="https://wa.me/5517997263334" target="_blank" class="nav-cta">Falar no WhatsApp</a>
-</nav>
+<header>
+    <h1>SPEED CAR JALES</h1>
+    <p>Onde a velocidade encontra o luxo.</p>
+</header>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-badge">Jales – SP · Desde 2010</div>
-  <h1 class="hero-title">
-    <span class="line1">Seu próximo</span>
-    <span class="line2">Veículo</span>
-    <span class="line3">está aqui.</span>
-  </h1>
-  <p class="hero-sub">Revendedora especializada em veículos seminovos e usados com procedência garantida. Financiamento facilitado, documentação em dia e as melhores condições da região.</p>
-  <div class="hero-actions">
-    <a href="#estoque" class="btn-primary">Ver Estoque Completo</a>
-    <a href="https://wa.me/5517997263334" target="_blank" class="btn-ghost">WhatsApp ↗</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Veículos vendidos</span></div>
-    <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Anos no mercado</span></div>
-    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Procedência garantida</span></div>
-  </div>
-  <div class="hero-car-deco">SPEED CAR</div>
-</section>
-
-<!-- ESTOQUE -->
-<section id="estoque">
-  <div class="section-label">Estoque</div>
-  <h2 class="section-title">Veículos Disponíveis</h2>
-  <p class="section-desc">Confira nossa seleção de veículos. Todos revisados, com documentação em dia e prontos para transferência.</p>
-
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCars('todos')">Todos</button>
-    <button class="filter-btn" onclick="filterCars('sedan')">Sedan</button>
-    <button class="filter-btn" onclick="filterCars('suv')">SUV / Crossover</button>
-    <button class="filter-btn" onclick="filterCars('hatch')">Hatch</button>
-    <button class="filter-btn" onclick="filterCars('pickup')">Pickup</button>
-  </div>
-
-  <div class="cars-grid" id="cars-grid">
-
-    <div class="car-card" data-cat="suv">
-      <div class="car-img-placeholder" style="position:relative">
-       <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=1000&auto=format&fit=crop" alt="Tracker" style="width:100%; height:100%; object-fit:cover;">
-        <div class="car-tag">Destaque</div>
-      </div>
-      <div class="car-info">
-        <div class="car-make">Chevrolet</div>
-        <div class="car-model">Tracker LTZ Turbo</div>
-        <div class="car-specs">
-          <span class="car-spec">2022</span>
-          <span class="car-spec">28.000 km</span>
-          <span class="car-spec">Automático</span>
-          <span class="car-spec">Flex</span>
+<div class="container">
+    <h2>Destaques do Estoque</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?auto=format&fit=crop&q=80&w=800" alt="Tracker">
+            <div class="card-content">
+                <h3>Chevrolet Tracker Premier</h3>
+                <p>2024 • Automático • Teto Solar</p>
+                <a href="javascript:sendWhatsApp('Tracker')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
+            </div>
         </div>
-        <div class="car-price"><span>R$</span>119.900</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse no Tracker 2022." target="_blank">Consultar</a>
-      </div>
-    </div>
-
-    <div class="car-card" data-cat="sedan">
-      <div class="car-img-placeholder">
-        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1000&auto=format&fit=crop" alt="Virtus" style="width:100%; height:100%; object-fit:cover;">
-      </div>
-      <div class="car-info">
-        <div class="car-make">Volkswagen</div>
-        <div class="car-model">Virtus Highline</div>
-        <div class="car-specs">
-          <span class="car-spec">2021</span>
-          <span class="car-spec">42.000 km</span>
-          <span class="car-spec">Automático</span>
-          <span class="car-spec">Flex</span>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" alt="Virtus">
+            <div class="card-content">
+                <h3>VW Virtus Highline</h3>
+                <p>2023 • Turbo • Digital Cockpit</p>
+                <a href="javascript:sendWhatsApp('Virtus')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
+            </div>
         </div>
-        <div class="car-price"><span>R$</span>89.500</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse no Virtus 2021." target="_blank">Consultar</a>
-      </div>
     </div>
 
-    <div class="car-card" data-cat="hatch">
-      <div class="car-img-placeholder">
-       <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop" alt="Pulse" style="width:100%; height:100%; object-fit:cover;">
-        <div class="car-tag" style="background:#555">Novo</div>
-      </div>
-      <div class="car-info">
-        <div class="car-make">Fiat</div>
-        <div class="car-model">Pulse Drive 1.3</div>
-        <div class="car-specs">
-          <span class="car-spec">2023</span>
-          <span class="car-spec">18.000 km</span>
-          <span class="car-spec">CVT</span>
-          <span class="car-spec">Flex</span>
+    <section class="gallery-section">
+        <h2>Galeria de Detalhes (Interno/Externo)</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=500" alt="Externa">
+                <span class="gallery-tag">EXTERNA</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=500" alt="Painel">
+                <span class="gallery-tag">INTERNA (PAINEL)</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?auto=format&fit=crop&q=80&w=500" alt="Bancos">
+                <span class="gallery-tag">INTERNA (COURO)</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=500" alt="Roda">
+                <span class="gallery-tag">RODAS LIGA LEVE</span>
+            </div>
         </div>
-        <div class="car-price"><span>R$</span>97.000</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse no Pulse 2023." target="_blank">Consultar</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="car-card" data-cat="pickup">
-      <div class="car-img-placeholder">
-       <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1000&auto=format&fit=crop" alt="Strada" style="width:100%; height:100%; object-fit:cover;">
-      </div>
-      <div class="car-info">
-        <div class="car-make">Fiat</div>
-        <div class="car-model">Strada Volcano</div>
-        <div class="car-specs">
-          <span class="car-spec">2022</span>
-          <span class="car-spec">35.000 km</span>
-          <span class="car-spec">Manual</span>
-          <span class="car-spec">Flex</span>
-        </div>
-        <div class="car-price"><span>R$</span>105.000</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse na Strada 2022." target="_blank">Consultar</a>
-      </div>
+    <h2>Localização (Jales-SP)</h2>
+    <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.384666320078!2d-50.5487679!3d-20.2636253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9497e2e3428d059b%3A0xc0768e1e77936a28!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jales%2C%20SP%2C%2015700-000!5e0!3m2!1spt-BR!2sbr!4v1713000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-
-    <div class="car-card" data-cat="hatch">
-      <div class="car-img-placeholder">
-        <span>🚗</span>
-      </div>
-      <div class="car-info">
-        <div class="car-make">Hyundai</div>
-        <div class="car-model">HB20 Vision 1.0T</div>
-        <div class="car-specs">
-          <span class="car-spec">2021</span>
-          <span class="car-spec">55.000 km</span>
-          <span class="car-spec">Automático</span>
-          <span class="car-spec">Flex</span>
-        </div>
-        <div class="car-price"><span>R$</span>72.900</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse no HB20 2021." target="_blank">Consultar</a>
-      </div>
-    </div>
-
-    <div class="car-card" data-cat="suv">
-      <div class="car-img-placeholder">
-        <span>🚙</span>
-      </div>
-      <div class="car-info">
-        <div class="car-make">Jeep</div>
-        <div class="car-model">Renegade Sport</div>
-        <div class="car-specs">
-          <span class="car-spec">2020</span>
-          <span class="car-spec">68.000 km</span>
-          <span class="car-spec">Automático</span>
-          <span class="car-spec">Flex</span>
-        </div>
-        <div class="car-price"><span>R$</span>93.500</div>
-      </div>
-      <div class="car-footer">
-        <span style="font-size:.75rem;color:var(--silver)">Financio com entrada</span>
-        <a href="https://wa.me/5517997263334?text=Olá! Tenho interesse no Renegade 2020." target="_blank">Consultar</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- DIFERENCIAIS -->
-<section id="diferenciais">
-  <div class="section-label">Por que escolher a Speed Car</div>
-  <h2 class="section-title">Nossos Diferenciais</h2>
-  <p class="section-desc">Mais de uma década cuidando do seu sonho com transparência e comprometimento.</p>
-
-  <div class="diff-grid">
-    <div class="diff-card">
-      <div class="diff-icon">🔍</div>
-      <div class="diff-title">Veículos Verificados</div>
-      <div class="diff-desc">Todos os carros passam por inspeção técnica rigorosa antes de entrar no nosso estoque. Nenhuma surpresa depois da compra.</div>
-    </div>
-    <div class="diff-card">
-      <div class="diff-icon">📄</div>
-      <div class="diff-title">Documentação OK</div>
-      <div class="diff-desc">Transferência, IPVA, licenciamento e histórico de débitos — tudo verificado e regularizado. Você sai tranquilo.</div>
-    </div>
-    <div class="diff-card">
-      <div class="diff-icon">💳</div>
-      <div class="diff-title">Financiamento Fácil</div>
-      <div class="diff-desc">Trabalhamos com os principais bancos do mercado para aprovar seu crédito com as melhores taxas e parcelas que cabem no bolso.</div>
-    </div>
-    <div class="diff-card">
-      <div class="diff-icon">🤝</div>
-      <div class="diff-title">Troca / Entrada</div>
-      <div class="diff-desc">Aceite seu veículo como entrada ou troca. Avaliamos na hora com preço justo e sem enrolação.</div>
-    </div>
-    <div class="diff-card">
-      <div class="diff-icon">📍</div>
-      <div class="diff-title">Localização Central</div>
-      <div class="diff-desc">Estamos na Av. João Amadeu, 3216 – Jardim Samambaia, Jales/SP. Fácil acesso e estacionamento no local.</div>
-    </div>
-    <div class="diff-card">
-      <div class="diff-icon">💬</div>
-      <div class="diff-title">Atendimento Humano</div>
-      <div class="diff-desc">Equipe preparada para tirar todas as suas dúvidas com honestidade. Sem pressão, sem jargão – só a verdade.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FINANCIAMENTO -->
-<section id="financiamento">
-  <div class="fin-inner">
-    <div>
-      <div class="section-label" style="color:rgba(255,255,255,0.7)">Crédito na hora</div>
-      <div class="fin-title">Financie<br><em>o seu</em><br>carro hoje</div>
-      <p class="fin-desc">Aprovação rápida com os melhores bancos do mercado. Condições personalizadas para cada cliente — trabalhamos para você sair com o carro que merece.</p>
-      <a href="https://wa.me/5517997263334?text=Quero simular um financiamento!" target="_blank" class="fin-cta">Simular Agora ↗</a>
-    </div>
-    <div>
-      <div class="fin-steps">
-        <div class="fin-step">
-          <div class="fin-step-num">01</div>
-          <div class="fin-step-text">
-            <strong>Escolha o veículo</strong>
-            Navegue pelo nosso estoque e escolha o carro que combina com você.
-          </div>
-        </div>
-        <div class="fin-step">
-          <div class="fin-step-num">02</div>
-          <div class="fin-step-text">
-            <strong>Solicite a simulação</strong>
-            Entre em contato pelo WhatsApp ou pessoalmente. Fazemos a análise de crédito na hora.
-          </div>
-        </div>
-        <div class="fin-step">
-          <div class="fin-step-num">03</div>
-          <div class="fin-step-text">
-            <strong>Aprovação e entrega</strong>
-            Crédito aprovado, documentação assinada e você sai com o carro. Simples assim.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AVALIAÇÕES -->
-<section id="avaliacoes">
-  <div class="section-label">Avaliações</div>
-  <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
-  <div class="rating-summary">
-    <div class="rating-big">3,0</div>
-    <div>
-      <div class="rating-stars">★★★☆☆</div>
-      <div class="rating-count">4 avaliações no Google</div>
-    </div>
-  </div>
-
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Ótimo atendimento! Comprei meu primeiro carro aqui e o pessoal foi muito prestativo. Documentação toda em dia, sem dor de cabeça."</div>
-      <div class="review-author">Marcos A.</div>
-      <div class="review-date">via Google</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★☆</div>
-      <div class="review-text">"Bom estoque de veículos seminovos. Consegui financiamento rápido e o carro estava em ótimas condições. Recomendo."</div>
-      <div class="review-author">Fernanda L.</div>
-      <div class="review-date">via Google</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Fui bem atendido desde o primeiro contato pelo WhatsApp. Preço justo, carro revisado e entrega no prazo combinado."</div>
-      <div class="review-author">Ricardo M.</div>
-      <div class="review-date">via Google</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato">
-  <div class="section-label">Fale conosco</div>
-  <h2 class="section-title">Entre em Contato</h2>
-  <p class="section-desc">Estamos prontos para atender você presencialmente, por telefone ou WhatsApp. Sem compromisso.</p>
-
-  <div class="contato-grid">
-    <div class="contato-info">
-      <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Endereço</div>
-          <div class="info-value">Av. João Amadeu, 3216<br>Jardim Samambaia – Jales/SP<br>CEP: 15700-200</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📱</div>
-        <div>
-          <div class="info-label">WhatsApp / Telefone</div>
-          <div class="info-value"><a href="https://wa.me/5517997263334">(17) 99726-3334</a></div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🕐</div>
-        <div>
-          <div class="info-label">Horário de Atendimento</div>
-          <div class="info-value">Seg a Sex: 08h às 18h<br>Sábado: 08h às 13h</div>
-        </div>
-      </div>
-
-      <div class="map-wrap">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.170280455088!2d-50.5516766!3d-20.2725114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9499097e937d7a9b%3A0xc3f17387d3dfa566!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jardim%20Samambaia%2C%20Jales%20-%20SP%2C%2015700-200!5e0!3m2!1spt-BR!2sbr!4v1713020000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
-    <div>
-      <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:700;text-transform:uppercase;margin-bottom:1.5rem;">Envie uma Mensagem</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nome</label>
-          <input type="text" placeholder="Seu nome">
-        </div>
-        <div class="form-group">
-          <label>Telefone</label>
-          <input type="tel" placeholder="(17) 9 0000-0000">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Assunto</label>
-        <select>
-          <option>Interesse em veículo</option>
-          <option>Simulação de financiamento</option>
-          <option>Avaliação do meu veículo</option>
-          <option>Outro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Mensagem</label>
-        <textarea placeholder="Descreva o que você precisa..."></textarea>
-      </div>
-      <button class="form-submit" onclick="sendWhatsApp()">Enviar via WhatsApp ↗</button>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Speed <span>Car</span> Veículos</div>
-  <div class="footer-text">Av. João Amadeu, 3216 – Jales/SP · (17) 99726-3334</div>
-  <div class="footer-text">© 2025 Speed Car Veículos. Todos os direitos reservados.</div>
-</footer>
-
-<!-- WhatsApp float -->
-<a href="https://wa.me/5517997263334" target="_blank" class="whatsapp-float" title="Fale no WhatsApp">
-  <svg viewBox="0 0 24 24" width="26" height="26" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-  </svg>
-</a>
-
 <script>
-function filterCars(cat) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.car-card').forEach(c => {
-    c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? 'block' : 'none';
-  });
-}
-
-function sendWhatsApp() {
-  const nome = document.querySelector('input[placeholder="Seu nome"]').value;
-  const tel = document.querySelector('input[placeholder="(17) 9 0000-0000"]').value;
-  const msg = document.querySelector('textarea').value;
-  
-  // Impede o envio se o nome estiver vazio (Segurança básica)
-  if (!nome) {
-    alert("Por favor, digite seu nome.");
-    return;
-  }
-
-  const texto = encodeURIComponent(`Olá! Meu nome é ${nome}. ${msg} (Tel: ${tel})`);
-  const numeroLoja = "5517997263334"; // Confirme se este é o número correto
-  
-  window.open(`https://wa.me/${numeroLoja}?text=${texto}`, '_blank');
-}
+    function sendWhatsApp(veiculo) {
+        const nome = prompt("Para te atender melhor, qual seu nome?");
+        if (!nome) return;
+        const telLoja = "5517997263334";
+        const texto = encodeURIComponent(`Olá! Sou o ${nome} e vi no site o ${veiculo}. Gostaria de mais detalhes!`);
+        window.open(`https://wa.me/${telLoja}?text=${texto}`, '_blank');
+    }
 </script>
+
 </body>
 </html>
