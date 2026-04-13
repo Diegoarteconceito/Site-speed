@@ -3,93 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speed Car Jales</title>
+    <title>Speed Car Jales | Estoque Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --accent: #FFD700; --dark-bg: #0f0f0f; --card-bg: #181818; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; }
-        header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--accent); }
-        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        :root { --primary: #d4af37; --dark: #0a0a0a; --light: #f4f4f4; --card-bg: #1a1a1a; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--dark); color: var(--light); margin: 0; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        header { text-align: center; padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500'); background-size: cover; border-bottom: 3px solid var(--primary); }
+        h2 { color: var(--primary); text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px; }
         
-        /* Layout Original dos Cards */
-        .car-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 25px; display: flex; flex-wrap: wrap; overflow: hidden; border: 1px solid #222; }
-        .car-img-side { flex: 1; min-width: 300px; position: relative; }
-        .car-img-side img { width: 100%; height: 100%; object-fit: cover; min-height: 250px; }
-        .car-info-side { flex: 1.2; padding: 25px; min-width: 300px; display: flex; flex-direction: column; justify-content: space-between; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 30px; }
+        .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .main-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--primary); }
+        .card-content { padding: 20px; }
         
-        h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 1.5rem; }
-        .specs { display: flex; gap: 15px; font-size: 0.9rem; color: #bbb; margin-bottom: 15px; }
-        
-        /* Abas de Fotos solicitadas */
-        .photo-nav { display: flex; gap: 8px; margin-bottom: 15px; }
-        .photo-nav button { background: #333; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
-        .photo-nav button:hover { border-color: var(--accent); }
+        /* Sistema de Abas de Fotos */
+        .photo-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 15px; }
+        .photo-tabs img { width: 100%; height: 60px; object-fit: cover; border-radius: 5px; cursor: pointer; opacity: 0.6; transition: 0.3s; border: 1px solid transparent; }
+        .photo-tabs img:hover { opacity: 1; border-color: var(--primary); }
 
-        .price { font-size: 1.8rem; font-weight: bold; color: white; margin-bottom: 15px; }
-        .price span { color: var(--accent); font-size: 1rem; margin-right: 5px; }
+        .btn-whats { display: block; text-align: center; background: #25d366; color: white; padding: 15px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+        .btn-whats:hover { background: #128c7e; }
 
-        .btn-consultar { background: var(--accent); color: black; text-align: center; padding: 12px; text-decoration: none; border-radius: 6px; font-weight: bold; text-transform: uppercase; }
-        
-        .map-wrap { margin-top: 50px; border-radius: 12px; overflow: hidden; height: 350px; border: 1px solid #333; }
+        .map-wrap { margin: 50px 0; border-radius: 15px; overflow: hidden; border: 2px solid var(--primary); height: 400px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>SPEED CAR <span style="color: var(--accent)">JALES</span></h1>
+    <h1>SPEED CAR JALES</h1>
+    <p>Excelência em Seminovos • Av. João Amadeu, 3216</p>
 </header>
 
 <div class="container">
-    <div class="car-card">
-        <div class="car-img-side">
-            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800" id="view-tracker">
-        </div>
-        <div class="car-info-side">
-            <div>
-                <h3>CHEVROLET TRACKER PREMIER</h3>
-                <div class="specs"><span>2024</span><span>Automático</span><span>Turbo</span></div>
-                
-                <p style="font-size: 0.8rem; color: #888;">VEJA MAIS DETALHES:</p>
-                <div class="photo-nav">
-                    <button onclick="document.getElementById('view-tracker').src='https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800'">FORA</button>
-                    <button onclick="document.getElementById('view-tracker').src='https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=800'">DENTRO</button>
-                    <button onclick="document.getElementById('view-tracker').src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800'">RODA</button>
-                    <button onclick="document.getElementById('view-tracker').src='https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=800'">PAINEL</button>
+    <h2>Nosso Estoque</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800" class="main-img" id="img-tracker">
+            <div class="card-content">
+                <h3>Chevrolet Tracker Premier 2024</h3>
+                <p>O SUV tecnológico com teto solar e motor turbo.</p>
+                <div class="photo-tabs">
+                    <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=400" onclick="document.getElementById('img-tracker').src=this.src" title="Externa">
+                    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=400" onclick="document.getElementById('img-tracker').src=this.src" title="Interna/Painel">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=400" onclick="document.getElementById('img-tracker').src=this.src" title="Pneu/Roda">
+                    <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=400" onclick="document.getElementById('img-tracker').src=this.src" title="Câmbio/Detalhes">
                 </div>
+                <a href="javascript:sendWhatsApp('Tracker Premier')" class="btn-whats"><i class="fab fa-whatsapp"></i> Tenho Interesse</a>
             </div>
-            <div>
-                <div class="price"><span>R$</span> 129.900</div>
-                <a href="https://wa.me/5517997263334" class="btn-consultar">Consultar no WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800" class="main-img" id="img-virtus">
+            <div class="card-content">
+                <h3>VW Virtus Highline 2023</h3>
+                <p>Espaço de sedan com performance de esportivo.</p>
+                <div class="photo-tabs">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=400" onclick="document.getElementById('img-virtus').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=400" onclick="document.getElementById('img-virtus').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=400" onclick="document.getElementById('img-virtus').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=400" onclick="document.getElementById('img-virtus').src=this.src">
+                </div>
+                <a href="javascript:sendWhatsApp('Virtus Highline')" class="btn-whats"><i class="fab fa-whatsapp"></i> Tenho Interesse</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800" class="main-img" id="img-pulse">
+            <div class="card-content">
+                <h3>Fiat Pulse Audace 2024</h3>
+                <p>Design italiano com a robustez que você precisa.</p>
+                <div class="photo-tabs">
+                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" onclick="document.getElementById('img-pulse').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=400" onclick="document.getElementById('img-pulse').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=400" onclick="document.getElementById('img-pulse').src=this.src">
+                    <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=400" onclick="document.getElementById('img-pulse').src=this.src">
+                </div>
+                <a href="javascript:sendWhatsApp('Fiat Pulse')" class="btn-whats"><i class="fab fa-whatsapp"></i> Tenho Interesse</a>
             </div>
         </div>
     </div>
 
-    <div class="car-card">
-        <div class="car-img-side">
-            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800" id="view-virtus">
-        </div>
-        <div class="car-info-side">
-            <div>
-                <h3>VW VIRTUS HIGHLINE</h3>
-                <div class="specs"><span>2023</span><span>Automático</span><span>Flex</span></div>
-                
-                <div class="photo-nav">
-                    <button onclick="document.getElementById('view-virtus').src='https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800'">FORA</button>
-                    <button onclick="document.getElementById('view-virtus').src='https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=800'">DENTRO</button>
-                </div>
-            </div>
-            <div>
-                <div class="price"><span>R$</span> 105.000</div>
-                <a href="https://wa.me/5517997263334" class="btn-consultar">Consultar no WhatsApp</a>
-            </div>
-        </div>
-    </div>
-
-    <h2 style="text-align: center; color: var(--accent);">NOSSA LOJA EM JALES</h2>
+    <h2>Localização Speed Car</h2>
     <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.17!2d-50.5516!3d-20.2725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE2JzIxLjAiUyA1MMKwMzMnMDUuOCJX!5e0!3m2!1spt-BR!2sbr!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.5678!2d-50.6543!3d-20.2678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE2JzA0LjEiUyA1MMKwMzknMTUuNSJX!5e0!3m2!1spt-BR!2sbr!4v1712950000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </div>
+
+<script>
+    function sendWhatsApp(carro) {
+        const nome = prompt("Qual seu nome?");
+        if (!nome) return;
+        const numero = "5517997263334";
+        const msg = encodeURIComponent(`Olá! Sou o ${nome} e vi no site o ${carro}. Ainda está disponível?`);
+        window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+    }
+</script>
 
 </body>
 </html>
