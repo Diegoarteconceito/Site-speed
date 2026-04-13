@@ -5,83 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speed Car Jales</title>
     <style>
-        /* MANTENDO SEU LAYOUT ORIGINAL COM TROCA PARA AMARELO */
-        :root { --main-color: #FFD700; --bg-dark: #0a0a0a; --card-bg: #141414; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; margin: 0; }
+        :root { --amarelo: #FFD700; --verde-whats: #2ecc71; --card-bg: #111111; }
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: white; margin: 0; text-align: center; }
+        
+        header { padding: 40px 20px; border-bottom: 2px solid var(--amarelo); }
         .container { max-width: 1200px; margin: auto; padding: 20px; }
         
-        .car-card { background: var(--card-bg); border-radius: 15px; margin-bottom: 30px; display: flex; flex-wrap: wrap; border: 1px solid #222; overflow: hidden; }
-        .car-image { flex: 1; min-width: 300px; position: relative; }
-        .car-image img { width: 100%; height: 100%; object-fit: cover; min-height: 250px; }
-        .car-details { flex: 1.2; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
-        
-        h2 { color: var(--main-color); margin: 0; font-size: 1.8rem; text-transform: uppercase; }
-        .info-row { display: flex; gap: 15px; color: #999; margin: 10px 0; font-size: 0.9rem; }
-        
-        /* ABA DE FOTOS DENTRO DO CARD */
-        .photo-selector { display: flex; gap: 10px; margin: 15px 0; }
-        .photo-selector button { background: #222; border: 1px solid #444; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
-        .photo-selector button:hover { border-color: var(--main-color); color: var(--main-color); }
+        h2 { color: var(--amarelo); text-transform: uppercase; margin: 40px 0 20px; font-size: 1.2rem; }
 
-        .price-tag { font-size: 2rem; font-weight: bold; margin: 20px 0; }
-        .price-tag span { color: var(--main-color); font-size: 1.2rem; }
-
-        .btn-action { background: var(--main-color); color: black; text-align: center; padding: 15px; text-decoration: none; border-radius: 8px; font-weight: bold; text-transform: uppercase; display: block; }
+        /* Layout de Cards (Igual à imagem que você mandou) */
+        .grid-estoque { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; text-align: left; border: 1px solid #222; }
         
-        .map-section { margin-top: 50px; border-radius: 15px; overflow: hidden; height: 400px; border: 1px solid #333; }
+        .card-img-container { position: relative; width: 100%; height: 220px; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-body { padding: 20px; }
+        .card-body h3 { font-size: 1.1rem; margin: 0 0 10px; }
+        .card-body p { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; }
+
+        /* Abas de Fotos solicitadas */
+        .abas-fotos { display: flex; gap: 5px; margin-bottom: 15px; }
+        .abas-fotos button { background: #222; border: 1px solid #444; color: white; font-size: 0.65rem; padding: 5px 8px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .abas-fotos button:hover { border-color: var(--amarelo); color: var(--amarelo); }
+
+        .btn-whats { background: var(--verde-whats); color: white; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+        
+        .map-container { margin-top: 40px; border-radius: 15px; overflow: hidden; height: 350px; border: 1px solid #333; }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>SPEED CAR JALES</h1>
+    <p style="font-size: 0.9rem; color: #888;">Onde a velocidade encontra o luxo.</p>
+</header>
+
 <div class="container">
-    <h1 style="text-align: center; margin: 40px 0;">SPEED CAR <span style="color: var(--main-color)">JALES</span></h1>
-
-    <div class="car-card">
-        <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=1000" id="main-tracker">
-        </div>
-        <div class="car-details">
-            <div>
-                <h2>CHEVROLET TRACKER PREMIER</h2>
-                <div class="info-row"><span>2024</span><span>Automático</span><span>Turbo</span></div>
-                
-                <p style="font-size: 0.8rem; color: var(--main-color); margin-bottom: 5px;">VER FOTOS:</p>
-                <div class="photo-selector">
-                    <button onclick="document.getElementById('main-tracker').src='https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=1000'">EXTERIOR</button>
-                    <button onclick="document.getElementById('main-tracker').src='https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1000'">INTERIOR</button>
-                    <button onclick="document.getElementById('main-tracker').src='https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=1000'">PAINEL</button>
-                    <button onclick="document.getElementById('main-tracker').src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000'">RODAS</button>
-                </div>
+    <h2>Destaques do Estoque</h2>
+    
+    <div class="grid-estoque">
+        <div class="card">
+            <div class="card-img-container">
+                <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800" id="img-tracker">
             </div>
-            <div>
-                <div class="price-tag"><span>R$</span> 129.900</div>
-                <a href="https://wa.me/5517997263334" class="btn-action">Falar com Consultor</a>
+            <div class="card-body">
+                <h3>Chevrolet Tracker Premier</h3>
+                <p>2024 • Automático • Teto Solar</p>
+                
+                <div class="abas-fotos">
+                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800'">FORA</button>
+                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=800'">DENTRO</button>
+                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=800'">PAINEL</button>
+                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800'">RODA</button>
+                </div>
+
+                <a href="https://wa.me/5517997263334" class="btn-whats">Consultar Valor</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-container">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800" id="img-virtus">
+            </div>
+            <div class="card-body">
+                <h3>VW Virtus Highline</h3>
+                <p>2023 • Turbo • Digital Cockpit</p>
+
+                <div class="abas-fotos">
+                    <button onclick="document.getElementById('img-virtus').src='https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800'">FORA</button>
+                    <button onclick="document.getElementById('img-virtus').src='https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=800'">DENTRO</button>
+                </div>
+
+                <a href="https://wa.me/5517997263334" class="btn-whats">Consultar Valor</a>
             </div>
         </div>
     </div>
 
-    <div class="car-card">
-        <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1000" id="main-virtus">
-        </div>
-        <div class="car-details">
-            <div>
-                <h2>VW VIRTUS HIGHLINE</h2>
-                <div class="info-row"><span>2023</span><span>Automático</span><span>Flex</span></div>
-                
-                <p style="font-size: 0.8rem; color: var(--main-color); margin-bottom: 5px;">VER FOTOS:</p>
-                <div class="photo-selector">
-                    <button onclick="document.getElementById('main-virtus').src='https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1000'">EXTERIOR</button>
-                    <button onclick="document.getElementById('main-virtus').src='https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1000'">INTERIOR</button>
-                    <button onclick="document.getElementById('main-virtus').src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000'">RODAS</button>
-                </div>
-            </div>
-            <div>
-                <div class="price-tag"><span>R$</span> 105.000</div>
-                <a href="https://wa.me/5517997263334" class="btn-action">Falar com Consultor</a>
-            </div>
-        </div>
+    <h2>Localização Speed Car</h2>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.170280455088!2d-50.5516766!3d-20.2725114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9499097e937d7a9b%3A0xc3f17387d3dfa566!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jardim%20Samambaia%2C%20Jales%20-%20SP%2C%2015700-200!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
+</div>
 
-    <h2 style="text-align: center; margin-top: 50px;">NOSSA LOCALIZAÇÃO</h2>
-    <div class="map-section">
+</body>
+</html>
