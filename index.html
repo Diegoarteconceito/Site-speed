@@ -3,90 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speed Car Jales</title>
+    <title>Speed Car Jales | Estoque Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --amarelo: #FFD700; --verde-whats: #2ecc71; --card-bg: #111111; }
-        body { font-family: 'Inter', sans-serif; background-color: #000; color: white; margin: 0; text-align: center; }
-        
-        header { padding: 40px 20px; border-bottom: 2px solid var(--amarelo); }
+        :root {
+            --primary: #d4af37;
+            --dark: #0a0a0a;
+            --light: #f4f4f4;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--light); margin: 0; }
+        header { padding: 40px 20px; text-align: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500'); background-size: cover; border-bottom: 3px solid var(--primary); }
         .container { max-width: 1200px; margin: auto; padding: 20px; }
+        h2 { text-align: center; color: var(--primary); text-transform: uppercase; margin-top: 50px; }
         
-        h2 { color: var(--amarelo); text-transform: uppercase; margin: 40px 0 20px; font-size: 1.2rem; }
+        /* Grid de Veículos */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #1a1a1a; border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .btn-whats { display: block; text-align: center; background: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 15px; }
 
-        /* Layout de Cards (Igual à imagem que você mandou) */
-        .grid-estoque { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; text-align: left; border: 1px solid #222; }
-        
-        .card-img-container { position: relative; width: 100%; height: 220px; }
-        .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .card-body { padding: 20px; }
-        .card-body h3 { font-size: 1.1rem; margin: 0 0 10px; }
-        .card-body p { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; }
+        /* Galeria de Fotos Internas/Externas */
+        .gallery-section { background: #111; padding: 40px 0; margin-top: 50px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; height: 150px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-tag { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: var(--primary); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
 
-        /* Abas de Fotos solicitadas */
-        .abas-fotos { display: flex; gap: 5px; margin-bottom: 15px; }
-        .abas-fotos button { background: #222; border: 1px solid #444; color: white; font-size: 0.65rem; padding: 5px 8px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
-        .abas-fotos button:hover { border-color: var(--amarelo); color: var(--amarelo); }
-
-        .btn-whats { background: var(--verde-whats); color: white; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
-        
-        .map-container { margin-top: 40px; border-radius: 15px; overflow: hidden; height: 350px; border: 1px solid #333; }
+        /* Mapa */
+        .map-wrap { margin-top: 50px; border-radius: 20px; overflow: hidden; border: 2px solid var(--primary); height: 400px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>SPEED CAR JALES</h1>
-    <p style="font-size: 0.9rem; color: #888;">Onde a velocidade encontra o luxo.</p>
+    <p>Onde a velocidade encontra o luxo.</p>
 </header>
 
 <div class="container">
     <h2>Destaques do Estoque</h2>
-    
-    <div class="grid-estoque">
+    <div class="grid">
         <div class="card">
-            <div class="card-img-container">
-                <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800" id="img-tracker">
-            </div>
-            <div class="card-body">
+            <img src="https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?auto=format&fit=crop&q=80&w=800" alt="Tracker">
+            <div class="card-content">
                 <h3>Chevrolet Tracker Premier</h3>
                 <p>2024 • Automático • Teto Solar</p>
-                
-                <div class="abas-fotos">
-                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1606148332571-50da1a0cb95c?q=80&w=800'">FORA</button>
-                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=800'">DENTRO</button>
-                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1617469767053-d3b508a0d182?q=80&w=800'">PAINEL</button>
-                    <button onclick="document.getElementById('img-tracker').src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800'">RODA</button>
-                </div>
-
-                <a href="https://wa.me/5517997263334" class="btn-whats">Consultar Valor</a>
+                <a href="javascript:sendWhatsApp('Tracker')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
             </div>
         </div>
-
         <div class="card">
-            <div class="card-img-container">
-                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800" id="img-virtus">
-            </div>
-            <div class="card-body">
+            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" alt="Virtus">
+            <div class="card-content">
                 <h3>VW Virtus Highline</h3>
                 <p>2023 • Turbo • Digital Cockpit</p>
-
-                <div class="abas-fotos">
-                    <button onclick="document.getElementById('img-virtus').src='https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800'">FORA</button>
-                    <button onclick="document.getElementById('img-virtus').src='https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=800'">DENTRO</button>
-                </div>
-
-                <a href="https://wa.me/5517997263334" class="btn-whats">Consultar Valor</a>
+                <a href="javascript:sendWhatsApp('Virtus')" class="btn-whats"><i class="fab fa-whatsapp"></i> Consultar Valor</a>
             </div>
         </div>
     </div>
 
-    <h2>Localização Speed Car</h2>
-    <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.170280455088!2d-50.5516766!3d-20.2725114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9499097e937d7a9b%3A0xc3f17387d3dfa566!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jardim%20Samambaia%2C%20Jales%20-%20SP%2C%2015700-200!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <section class="gallery-section">
+        <h2>Galeria de Detalhes (Interno/Externo)</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=500" alt="Externa">
+                <span class="gallery-tag">EXTERNA</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=500" alt="Painel">
+                <span class="gallery-tag">INTERNA (PAINEL)</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1617469767053-d3b508a0d182?auto=format&fit=crop&q=80&w=500" alt="Bancos">
+                <span class="gallery-tag">INTERNA (COURO)</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=500" alt="Roda">
+                <span class="gallery-tag">RODAS LIGA LEVE</span>
+            </div>
+        </div>
+    </section>
+
+    <h2>Localização (Jales-SP)</h2>
+    <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.384666320078!2d-50.5487679!3d-20.2636253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9497e2e3428d059b%3A0xc0768e1e77936a28!2sAv.%20Jo%C3%A3o%20Amadeu%2C%203216%20-%20Jales%2C%20SP%2C%2015700-000!5e0!3m2!1spt-BR!2sbr!4v1713000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </div>
+
+<script>
+    function sendWhatsApp(veiculo) {
+        const nome = prompt("Para te atender melhor, qual seu nome?");
+        if (!nome) return;
+        const telLoja = "5517997263334";
+        const texto = encodeURIComponent(`Olá! Sou o ${nome} e vi no site o ${veiculo}. Gostaria de mais detalhes!`);
+        window.open(`https://wa.me/${telLoja}?text=${texto}`, '_blank');
+    }
+</script>
 
 </body>
 </html>
